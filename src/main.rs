@@ -14,11 +14,10 @@ fn main() {
 }
 
 fn calculate_fuel(module_mass: i64) -> i64 {
-    let divided = (module_mass / 3) - 2;
-    if divided >= 0 {
-        return divided + calculate_fuel(divided);
-    }
-    return 0;
+    return match (module_mass / 3) - 2 {
+        x if x >= 0 => x + calculate_fuel(x),
+        _ => 0,
+    };
 }
 
 #[cfg(test)]
