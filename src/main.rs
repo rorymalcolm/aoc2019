@@ -1,14 +1,14 @@
 use std::fs;
 
 fn main() {
-    let filename = std::env::args().nth(1).unwrap();    
+    let filename = std::env::args().nth(1).unwrap();
     let contents = fs::read_to_string(filename).unwrap();
     let content_split = contents.split("\n");
     let mut x = 0_i64;
     for line in content_split {
         match line.parse::<i64>() {
-            Ok(parsed) => x = x + calculate_fuel(parsed), 
-            Err(_err) => x = x 
+            Ok(parsed) => x = x + calculate_fuel(parsed),
+            Err(_err) => x = x,
         }
     }
 }
@@ -18,7 +18,7 @@ fn calculate_fuel(module_mass: i64) -> i64 {
     if divided >= 0 {
         return divided + calculate_fuel(divided);
     }
-    return 0
+    return 0;
 }
 
 #[cfg(test)]
