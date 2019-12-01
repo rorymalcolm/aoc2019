@@ -8,21 +8,17 @@ fn main() {
     for line in content_split {
         match line.parse::<i64>() {
             Ok(parsed) => x = x + calculate_fuel(parsed), 
-            Err(_err) => x = x + 0
+            Err(_err) => x = x 
         }
     }
-    println!("{}", x);
 }
 
 fn calculate_fuel(module_mass: i64) -> i64 {
-    let divided = module_mass / 3;
-    let result = divided - 2;
-    if result >= 0 {
-        let x = calculate_fuel(result);
-        return result + x;
-    } else {
-        return 0
+    let divided = (module_mass / 3) - 2;
+    if divided >= 0 {
+        return divided + calculate_fuel(divided);
     }
+    return 0
 }
 
 #[cfg(test)]
