@@ -17,6 +17,20 @@ fn process_op_code(code: usize, x: usize, y: usize, parsed: &Vec<usize>) -> usiz
     }
 }
 
+pub fn search_combo(input_code: &Vec<usize>, computed_value: usize) -> usize {
+    for noun in 0..99 {
+        for verb in 0..99 {
+            let mut current = input_code.clone();
+            current[1] = noun;
+            current[2] = verb;
+            if process_input_list(&mut current)[0] == computed_value {
+                return 100 * noun + verb;
+            }
+        }
+    }
+    return 0;
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
